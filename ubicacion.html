@@ -6,9 +6,6 @@
     <title>GeoAR.js Demo</title>
     <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
     <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    
-    
     <script>
         const targetLatitude = 20.3987665;  // Latitud
         const targetLongitude = -101.2238308;  // Longitud
@@ -18,7 +15,7 @@
             const userLon = position.coords.longitude;
 
             // Mostrar coordenadas del usuario
-            document.getElementById('userLocation').innerHTML =
+            document.getElementById('userLocation').innerHTML = 
                 `Ubicación del usuario:<br>Latitud: ${userLat}<br>Longitud: ${userLon}`;
 
             // Calcular distancia simple
@@ -44,7 +41,6 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-
     <!-- Coordenadas del usuario -->
     <div id="userLocation" style="position: fixed; top: 10px; left: 10px; z-index: 10; background-color: rgba(0, 0, 0, 0.7); color: white; padding: 10px; border-radius: 5px;">
         Cargando ubicación...
@@ -52,10 +48,14 @@
 
     <a-scene vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
-        <a-entity id="geoEntity" geometry="primitive: box" rotation="0 180 0" scale="5 5 5" 
-                    gps-entity-place="latitude: 20.3987665; longitude: -101.2238308;" visible="false"></a-entity>
+        <!-- Coordenadas correctas: objeto estático -->
+        <a-entity id="geoEntity" geometry="primitive: box" rotation="0 180 0" scale="8 8 8" 
+                  gps-entity-place="latitude: 20.3987665; longitude: -101.2238308;" visible="false">
+        </a-entity>
 
+        <!-- Cámara con gps-camera -->
         <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
 </body>
 </html>
+
